@@ -2,7 +2,7 @@ node{
    stage('SCM CHECKOUT'){
      git 'https://github.com/VM2322/my-app.git'
    }
-   stage('BUILD-STAGE-MAVEN'){
+   stage('BUILD-MAVEN'){
 
       def mvnHome =  tool name: 'maven3', type: 'maven'   
       sh "${mvnHome}/bin/mvn clean package"
@@ -14,7 +14,7 @@ node{
 	          sh "${mvnHome}/bin/mvn sonar:sonar"
 	        }
 	    }
-   stage('Build Docker Image'){
+   stage('DOCKER IMAGE BUILD'){
    sh 'docker build -t saidamo/myweb:0.0.2 .'
    }
    stage('Docker Image Push'){
